@@ -34,10 +34,10 @@ public class PaymentService {
 
     //服务熔断
     @HystrixCommand(fallbackMethod = "paymentCircuitBreaker_fallback", commandProperties = {
-            @HystrixProperty(name = "circuitBeaker.enable", value = "true"),//是否开启断路器
-            @HystrixProperty(name = "circuitBeaker.requestVolumeThreshold", value = "10"),//请求次数
-            @HystrixProperty(name = "circuitBeaker.sleepWindowInMillions", value = "10000"),//时间窗口期
-            @HystrixProperty(name = "circuitBeaker.errorThresholdPercentage", value = "60")//失败率达到多少跳闸
+            @HystrixProperty(name = "circuitBreaker.enabled", value = "true"),//是否开启断路器
+            @HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "10"),//请求次数
+            @HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds", value = "10000"),//时间窗口期
+            @HystrixProperty(name = "circuitBreaker.errorThresholdPercentage", value = "60")//失败率达到多少跳闸
     })
     public String paymentCircuitBreaker(@PathVariable("id") Integer id) {
         if (id < 0) {
